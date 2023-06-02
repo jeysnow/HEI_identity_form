@@ -109,5 +109,38 @@ multi_analysis$data[, logic_number := logic_train + logic_schol +
                      logic_relig+ logic_comm + logic_market +
                       logic_state]
 
+#pattern
+logics <- c("train ","schol ", 
+            "relig ", "comm, ", 
+            "market ", "state")
+
+multi_analysis$data[,
+                    logic_pattern := paste(logic_train,
+                        logic_schol,
+                        logic_relig,
+                        logic_comm,
+                        logic_market,
+                        logic_state,
+                      sep=", ")]
+
+
+
+
+
+
+#                        .SDcols = c("logic_train",
+ #                   "logic_schol",
+  #                  "logic_relig",
+   #                 "logic_comm",
+    #                "logic_market",
+     #               "logic_state")
+                        
+      #                  logic_train,
+      ##                 logic_schol,
+        #                logic_relig,
+         #               logic_comm,
+          #              logic_market,
+           #             logic_state
+                        
+
 write_data(multi_analysis$data,"variables", "./clean_data/")
-lapply(multi_analysis$data, class)

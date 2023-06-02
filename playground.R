@@ -38,10 +38,19 @@ temp$test <- grepl(" tec| prof" , clean_data$merged$HEI_name, ignore.case = T)
 temp[test == TRUE, HEI_name]
 warnings()
 load_clean_data()
-clean_data$merged[HEI_code %in% c(13630, 17613, 18880, 17617, 17614, 20342, 17161,
-                    22020, 17969, 21508, 17615, 23291, 17612, 19215, 
-                    17616, 15705, 25590, 26575, 21800, 25413, 26909, 
-                    26489, 26840, 26990, 25817), .N]
 
 
-clean_data$merged$HEI_code[100:110]
+
+multi_analysis$data[,.(logic_pattern = 
+                         paste(..logics[
+                           as.logical(
+                             str_split_1(
+                               logic_pattern))]))]
+
+
+logics[multi_analysis$data$logic_pattern[1] %>%
+         str_split_1(", ") %>% 
+         as.logical()]
+
+
+?strsplit_1()
